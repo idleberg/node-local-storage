@@ -82,6 +82,10 @@ const localStorage = new Storage("./db.sqlite", {
 myEmitter.on("storage", console.log);
 ```
 
+## Related
+
+-   [`bun-storage`](https://www.npmjs.com/package/bun-storage)
+
 ## License
 
 This work is licensed under [The MIT License](https://opensource.org/licenses/MIT).
