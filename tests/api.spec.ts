@@ -157,4 +157,28 @@ const dbFile = resolve(tmpdir(), `${randomUUID()}.sqlite`);
 
 		assert(actual, String(expected));
 	});
+
+	test(`${type}.getItem() - Throws Error`, () => {
+		// @ts-expect-error Omitting the argument for the test
+		assert.throws(() => storage.getItem(), {
+			name: 'TypeError',
+			message: `Failed to execute "getItem" on "Storage": 1 arguments required, but only 0 present.`,
+		});
+	});
+
+	test(`${type}.removeItem() - Throws Error`, () => {
+		// @ts-expect-error Omitting the argument for the test
+		assert.throws(() => storage.removeItem(), {
+			name: 'TypeError',
+			message: `Failed to execute "removeItem" on "Storage": 1 arguments required, but only 0 present.`,
+		});
+	});
+
+	test(`${type}.setItem() - Throws Error`, () => {
+		// @ts-expect-error Omitting the argument for the test
+		assert.throws(() => storage.setItem(), {
+			name: 'TypeError',
+			message: `Failed to execute "setItem" on "Storage": 2 arguments required, but only 0 present.`,
+		});
+	});
 });
