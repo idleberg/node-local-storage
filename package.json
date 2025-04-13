@@ -1,0 +1,50 @@
+{
+	"name": "@idleberg/local-storage",
+	"version": "0.0.0",
+	"description": "A ponyfill for the Storage API, utilizing SQLite",
+
+	"type": "module",
+	"exports": {
+		"import": "./dist/index.js",
+		"require": "./dist/index.cjs"
+	},
+	"types": "./dist/index.d.ts",
+	"files": [
+		"dist/",
+		"LICENSE",
+		"README.md"
+	],
+	"engines": {
+		"node": ">=22.5"
+	},
+	"scripts": {
+		"build": "tsup",
+		"check": "npx biome check",
+		"dev": "node run build -- --watch",
+		"test:api": "node --experimental-strip-types tests/api.spec.ts",
+		"test:events": "node --experimental-strip-types tests/events.spec.ts",
+		"test": "concurrently --prefix '{name}' -c 'blue,green' 'npm:test:*'"
+	},
+	"keywords": [
+		"storage api",
+		"localstorage",
+		"sessionstorage",
+		"ponyfill"
+	],
+	"author": "Jan T. Sott",
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/idleberg/node-local-storage.git"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "^1.9.4",
+		"@commitlint/cli": "^19.8.0",
+		"@commitlint/config-conventional": "^19.8.0",
+		"@total-typescript/tsconfig": "^1.0.4",
+		"@types/node": "22.5",
+		"concurrently": "^9.1.2",
+		"tsup": "^8.4.0"
+	},
+	"packageManager": "pnpm@10.8.0+sha512.0e82714d1b5b43c74610193cb20734897c1d00de89d0e18420aebc5977fa13d780a9cb05734624e81ebd81cc876cd464794850641c48b9544326b5622ca29971"
+}

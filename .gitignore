@@ -1,0 +1,15 @@
+# Dependencies
+node_modules/
+bun.lockb
+package-lock.json
+yarn.lock
+
+# Build
+dist/
+
+# Development
+.turbo/
+
+# project-specific
+*.sqlite
+demo.ts

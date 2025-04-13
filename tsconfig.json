@@ -1,0 +1,9 @@
+{
+	"extends": "@total-typescript/tsconfig/bundler/no-dom/library-monorepo",
+	"compilerOptions": {
+		"allowImportingTsExtensions": true,
+		"module": "NodeNext",
+		"moduleResolution": "NodeNext",
+		"noEmit": true
+	}
+}
