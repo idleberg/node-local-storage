@@ -1,6 +1,6 @@
 # @idleberg/local-storage
 
-> A NodeJS ponyfill for the Storage API, utilizing SQLite
+> A NodeJS ponyfill for the Storage API, utilizing SQLite.
 
 [![License](https://img.shields.io/github/license/idleberg/node-local-storage?color=blue&style=for-the-badge)](https://github.com/idleberg/node-local-storage/blob/main/LICENSE)
 [![Version](https://img.shields.io/npm/v/@idleberg/local-storage?style=for-the-badge)](https://www.npmjs.org/package/@idleberg/local-storage)
