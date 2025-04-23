@@ -2,6 +2,12 @@
 	"name": "@idleberg/local-storage",
 	"version": "0.1.0",
 	"description": "A NodeJS ponyfill for the Storage API, utilizing SQLite",
+	"author": "Jan T. Sott",
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/idleberg/node-local-storage.git"
+	},
 	"type": "module",
 	"exports": {
 		"import": "./dist/index.js",
@@ -35,12 +41,6 @@
 		"session storage",
 		"ponyfill"
 	],
-	"author": "Jan T. Sott",
-	"license": "MIT",
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/idleberg/node-local-storage.git"
-	},
 	"devDependencies": {
 		"@biomejs/biome": "^1.9.4",
 		"@commitlint/cli": "^19.8.0",
