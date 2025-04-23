@@ -28,7 +28,9 @@
 	"keywords": [
 		"storage api",
 		"localstorage",
+		"local-storage",
 		"sessionstorage",
+		"session-storage",
 		"ponyfill"
 	],
 	"author": "Jan T. Sott",
