@@ -29,8 +29,10 @@
 		"storage api",
 		"localstorage",
 		"local-storage",
+		"local storage",
 		"sessionstorage",
 		"session-storage",
+		"session storage",
 		"ponyfill"
 	],
 	"author": "Jan T. Sott",
