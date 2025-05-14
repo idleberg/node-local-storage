@@ -84,7 +84,7 @@ myEmitter.on("storage", console.log);
 
 ## Related
 
--   [`bun-storage`](https://www.npmjs.com/package/bun-storage): a Bun implementation of this package
+-   [bun-storage](https://www.npmjs.com/package/bun-storage): a Bun implementation of this package
 
 ## License
 
