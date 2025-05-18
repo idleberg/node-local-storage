@@ -1,8 +1,0 @@
-npx biome check \
-	--config-path=biome.jsonc \
-	--fix \
-	--no-errors-on-unmatched \
-	--reporter=summary \
-	--staged \
-	--vcs-enabled=true \
-	--vcs-use-ignore-file=true
