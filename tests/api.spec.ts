@@ -67,6 +67,14 @@ const dbFile = resolve(tmpdir(), `${randomUUID()}.sqlite`);
 		assert.equal(actual, null);
 	});
 
+	test(`${type}.key() - Invalid Fraction Index`, () => {
+		storage.setItem('demo', 'Hello, world');
+
+		const actual = storage.key(1.1);
+
+		assert.equal(actual, null);
+	});
+
 	test(`${type}.length() - 0`, () => {
 		storage.setItem('demo', 'Hello, world!');
 		storage.clear();
@@ -163,6 +171,14 @@ const dbFile = resolve(tmpdir(), `${randomUUID()}.sqlite`);
 		assert.throws(() => storage.getItem(), {
 			name: 'TypeError',
 			message: `Failed to execute "getItem" on "Storage": 1 arguments required, but only 0 present.`,
+		});
+	});
+
+	test(`${type}.key() - Throws Error`, () => {
+		// @ts-expect-error Omitting the argument for the test
+		assert.throws(() => storage.key(), {
+			name: 'TypeError',
+			message: `Failed to execute "key" on "Storage": 1 arguments required, but only 0 present.`,
 		});
 	});
 
