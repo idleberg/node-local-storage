@@ -14,7 +14,7 @@
 -   supports `storage` events
 
 > [!NOTE]
-> This module depends on experimental `node:sqlite` module included in NodeJS v22.5 and later.
+> This module depends on the experimental `node:sqlite` module included in NodeJS v22.5 and later.
 
 ## Installation
 
