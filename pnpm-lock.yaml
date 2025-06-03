@@ -23,9 +23,6 @@ importers:
       '@types/node':
         specifier: ~22.15.18
         version: 22.15.18
-      concurrently:
-        specifier: ^9.1.2
-        version: 9.1.2
       lefthook:
         specifier: ^1.11.13
         version: 1.11.13
