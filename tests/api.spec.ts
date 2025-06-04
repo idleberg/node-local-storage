@@ -1,6 +1,6 @@
 import assert from 'node:assert';
 import { beforeEach, test } from 'node:test';
-import { createLocalStorage, createSessionStorage } from '../src/index.ts';
+import { createLocalStorage, createSessionStorage, Storage } from '../src/index.ts';
 
 // Helpers
 import { randomUUID } from 'node:crypto';
@@ -195,6 +195,15 @@ const dbFile = resolve(tmpdir(), `${randomUUID()}.sqlite`);
 		assert.throws(() => storage.setItem(), {
 			name: 'TypeError',
 			message: `Failed to execute "setItem" on "Storage": 2 arguments required, but only 0 present.`,
+		});
+	});
+
+	test(`${type}.constructor - Throws Error`, () => {
+		const fileName = type === 'localStorage' ? dbFile : ':memory:';
+
+		assert.throws(() => new Storage(fileName, {}), {
+			name: 'TypeError',
+			message: `The emitter option must be an instance of EventEmitter.`,
 		});
 	});
 });

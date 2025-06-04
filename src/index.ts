@@ -13,7 +13,7 @@ type EventOptions = {
 
 export class Storage {
 	#db: Database;
-	#emitter?: EventEmitter;
+	#emitter: EventEmitter;
 	#eventName = 'storage';
 
 	/**
@@ -26,7 +26,7 @@ export class Storage {
 	 * @returns A new instance of `Storage`.
 	 */
 	constructor(fileName: string | ':memory:', options: EventOptions = {}) {
-		if (options.emitter && !(options.emitter instanceof EventEmitter)) {
+		if (!(options.emitter instanceof EventEmitter)) {
 			throw new TypeError('The emitter option must be an instance of EventEmitter.');
 		}
 
