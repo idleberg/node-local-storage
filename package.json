@@ -28,6 +28,7 @@
 		"dev": "node run build -- --watch",
 		"prepack": "npm run build",
 		"prepare": "lefthook install",
+		"publish": "np --any-branch",
 		"test:api": "node --experimental-strip-types tests/api.spec.ts",
 		"test:events": "node --experimental-strip-types tests/events.spec.ts",
 		"test": "concurrently --prefix '{name}' -c 'blue,green' 'npm:test:*'"
@@ -50,6 +51,7 @@
 		"@types/node": "~22.15.18",
 		"concurrently": "^9.1.2",
 		"lefthook": "^1.11.13",
+		"np": "^10.2.0",
 		"tsup": "^8.5.0"
 	},
 	"packageManager": "pnpm@10.12.1+sha512.f0dda8580f0ee9481c5c79a1d927b9164f2c478e90992ad268bbb2465a736984391d6333d2c327913578b2804af33474ca554ba29c04a8b13060a717675ae3ac"
