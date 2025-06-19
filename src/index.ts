@@ -177,7 +177,7 @@ export class Storage {
 }
 
 /**
- * Returns an instance of `localStorage` that uses a SQLite database file to store data.
+ * Returns an instance of `localStorage` that uses a SQLite database file to store data, and a corresponding EventEmitter.
  * @param fileName path to the SQLite database file
  * @returns
  */
@@ -192,7 +192,7 @@ export function createLocalStorage(fileName: string): [Storage, EventEmitter] {
 }
 
 /**
- * Returns an instance of `sessionStorage` that uses memory to store data.
+ * Returns an instance of `sessionStorage` that uses memory to store data, and a corresponding EventEmitter.
  * @returns
  */
 export function createSessionStorage(): [Storage, EventEmitter] {
