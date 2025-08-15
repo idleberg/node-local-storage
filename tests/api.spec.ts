@@ -1,6 +1,6 @@
 import assert from 'node:assert';
 import { beforeEach, test } from 'node:test';
-import { createLocalStorage, createSessionStorage, Storage } from '../src/index.ts';
+import { createLocalStorage, createSessionStorage, createStorages, Storage } from '../src/index.ts';
 
 // Helpers
 import { randomUUID } from 'node:crypto';
@@ -8,6 +8,7 @@ import { tmpdir } from 'node:os';
 import { resolve } from 'node:path';
 
 const dbFile = resolve(tmpdir(), `${randomUUID()}.sqlite`);
+const storages = createStorages(dbFile);
 
 [
 	{
@@ -17,6 +18,14 @@ const dbFile = resolve(tmpdir(), `${randomUUID()}.sqlite`);
 	{
 		type: 'sessionStorage',
 		storage: createSessionStorage()[0],
+	},
+	{
+		type: 'storages.localStorage',
+		storage: storages.localStorage,
+	},
+	{
+		type: 'storages.sessionStorage',
+		storage: storages.sessionStorage,
 	},
 ].map(({ type, storage }) => {
 	beforeEach(() => {

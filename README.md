@@ -29,7 +29,7 @@
 Usage: `createLocalStorage(dbFile: string)`  
 Returns: `[Storage, EventEmitter]`
 
-Creates an instance of the [`localStorage`](https://developer.mozilla.org/docs/Web/API/Window/localStorage) API and a corresponding EventEmitter.
+Creates an instance of the [`localStorage`][] API, and a corresponding EventEmitter.
 
 **Example:**
 
@@ -47,7 +47,7 @@ emitter.on("storage", console.log);
 Usage: `createSessionStorage()`  
 Returns: `[Storage, EventEmitter]`
 
-Creates an instance of the [`sessionStorage`](https://developer.mozilla.org/docs/Web/API/Window/sessionStorage) API and a corresponding EventEmitter.
+Creates an instance of the [`sessionStorage`][] API, and a corresponding EventEmitter.
 
 **Example:**
 
@@ -55,6 +55,24 @@ Creates an instance of the [`sessionStorage`](https://developer.mozilla.org/docs
 import { createSessionStorage } from "@idleberg/local-storage";
 
 const [sessionStorage, emitter] = createSessionStorage();
+
+// Listen for storage changes
+emitter.on("storage", console.log);
+```
+
+#### `createStorages`
+
+Usage: `createStorages(dbFile: string)`  
+Returns: `{ sessionStorage, localStorage, emitter }`
+
+Creates instances of both, [`sessionStorage`][] and [`localStorage`][], as well as a corresponding EventEmitter.
+
+**Example:**
+
+```typescript
+import { createStorages } from "@idleberg/local-storage";
+
+const { sessionStorage, localStorage, emitter } = createStorages("./db.sqlite");
 
 // Listen for storage changes
 emitter.on("storage", console.log);
@@ -89,3 +107,6 @@ myEmitter.on("storage", console.log);
 ## License
 
 This work is licensed under [The MIT License](https://opensource.org/licenses/MIT).
+
+[`localStorage`]: https://developer.mozilla.org/docs/Web/API/Window/localStorage
+[`sessionStorage`]: https://developer.mozilla.org/docs/Web/API/Window/sessionStorage

@@ -204,3 +204,26 @@ export function createSessionStorage(): [Storage, EventEmitter] {
 
 	return [api, emitter];
 }
+
+/**
+ * Returns instances of both, `sessionStorage` and `localStorage`, and a corresponding EventEmitter.
+ * @param fileName path to the SQLite database file
+ * @returns an object containing both storage interfaces and event emitter
+ */
+export function createStorages(fileName: string): {
+	sessionStorage: Storage;
+	localStorage: Storage;
+	emitter: EventEmitter;
+} {
+	const emitter = new EventEmitter();
+
+	const sessionStorage = new Storage(':memory:', {
+		emitter,
+	});
+
+	const localStorage = new Storage(fileName, {
+		emitter,
+	});
+
+	return { sessionStorage, localStorage, emitter };
+}
