@@ -3,14 +3,14 @@ name: "Run tests on NodeJS"
 on:
   push:
     paths:
-      - ".github/workflows/node.yml"
+      - ".github/workflows/**"
       - "src/**"
       - "tests/**"
       - "package.json"
       - "pnpm-lock.yaml"
   pull_request:
     paths:
-      - ".github/workflows/node.yml"
+      - ".github/workflows/**"
       - "src/**"
       - "tests/**"
       - "package.json"
