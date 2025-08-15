@@ -1,6 +1,6 @@
 {
 	"name": "@idleberg/local-storage",
-	"version": "0.2.1",
+	"version": "0.2.0",
 	"description": "A NodeJS ponyfill for the Storage API, utilizing SQLite",
 	"author": "Jan T. Sott",
 	"license": "MIT",
