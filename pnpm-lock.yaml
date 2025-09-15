@@ -8,9 +8,6 @@ importers:
 
   .:
     devDependencies:
-      '@biomejs/biome':
-        specifier: 2.2.2
-        version: 2.2.2
       '@commitlint/cli':
         specifier: ^19.8.1
         version: 19.8.1(@types/node@24.3.0)(typescript@5.7.3)
@@ -26,9 +23,6 @@ importers:
       '@types/node':
         specifier: ~24.3.0
         version: 24.3.0
-      lefthook:
-        specifier: ^1.12.3
-        version: 1.12.3
       np:
         specifier: ^10.2.0
         version: 10.2.0(@types/node@24.3.0)(typescript@5.7.3)
