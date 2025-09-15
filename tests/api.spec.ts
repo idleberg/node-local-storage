@@ -209,6 +209,7 @@ const storages = createStorages(dbFile);
 	test(`${type}.constructor - Throws Error`, () => {
 		const fileName = type === 'localStorage' ? dbFile : ':memory:';
 
+		// @ts-expect-error Ommiting argument for the test
 		assert.throws(() => new Storage(fileName, {}), {
 			name: 'TypeError',
 			message: 'The emitter option must be an instance of EventEmitter.',
