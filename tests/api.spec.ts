@@ -1,11 +1,10 @@
 import assert from 'node:assert';
-import { beforeEach, test } from 'node:test';
-import { createLocalStorage, createSessionStorage, createStorages, Storage } from '../src/index.ts';
-
 // Helpers
 import { randomUUID } from 'node:crypto';
 import { tmpdir } from 'node:os';
 import { resolve } from 'node:path';
+import { beforeEach, test } from 'node:test';
+import { createLocalStorage, createSessionStorage, createStorages, Storage } from '../src/index.ts';
 
 const dbFile = resolve(tmpdir(), `${randomUUID()}.sqlite`);
 const storages = createStorages(dbFile);
@@ -27,7 +26,7 @@ const storages = createStorages(dbFile);
 		type: 'storages.sessionStorage',
 		storage: storages.sessionStorage,
 	},
-].map(({ type, storage }) => {
+].forEach(({ type, storage }) => {
 	beforeEach(() => {
 		storage.clear();
 	});
@@ -48,7 +47,7 @@ const storages = createStorages(dbFile);
 
 		const actual = storage.key(0);
 
-		assert.equal(actual, expected);;
+		assert.equal(actual, expected);
 	});
 
 	test(`${type}.key() - Invalid Index`, () => {
@@ -65,7 +64,7 @@ const storages = createStorages(dbFile);
 
 		const actual = storage.key(0.1);
 
-		assert.equal(actual, expected);;
+		assert.equal(actual, expected);
 	});
 
 	test(`${type}.key() - Invalid Fraction Index`, () => {
@@ -91,7 +90,7 @@ const storages = createStorages(dbFile);
 		const actual = storage.length;
 		const expected = 0;
 
-		assert.equal(actual, expected);;
+		assert.equal(actual, expected);
 	});
 
 	test(`${type}.length() - 1`, () => {
@@ -100,7 +99,7 @@ const storages = createStorages(dbFile);
 		const actual = storage.length;
 		const expected = 1;
 
-		assert.equal(actual, expected);;
+		assert.equal(actual, expected);
 	});
 
 	test(`${type}.removeItem()`, () => {
@@ -116,7 +115,7 @@ const storages = createStorages(dbFile);
 		storage.setItem('demo', expected);
 		const actual = storage.getItem('demo');
 
-		assert.equal(actual, expected);;
+		assert.equal(actual, expected);
 	});
 
 	test(`${type}.*etItem() - Number`, () => {
@@ -212,7 +211,7 @@ const storages = createStorages(dbFile);
 
 		assert.throws(() => new Storage(fileName, {}), {
 			name: 'TypeError',
-			message: `The emitter option must be an instance of EventEmitter.`,
+			message: 'The emitter option must be an instance of EventEmitter.',
 		});
 	});
 });
