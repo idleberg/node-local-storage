@@ -42,15 +42,12 @@
 		"ponyfill"
 	],
 	"devDependencies": {
-		"@biomejs/biome": "^2.2.4",
 		"@commitlint/cli": "^19.8.1",
 		"@commitlint/config-conventional": "^19.8.1",
-		"@idleberg/configs": "^0.2.0",
-		"@total-typescript/tsconfig": "^1.0.4",
-		"@types/node": "~24.4.0",
-		"lefthook": "^1.13.0",
+		"@idleberg/configs": "^0.3.1",
+		"@types/node": "~24.5.2",
 		"np": "^10.2.0",
-		"tsdown": "^0.15.1"
+		"tsdown": "^0.15.2"
 	},
 	"packageManager": "pnpm@10.12.1+sha512.f0dda8580f0ee9481c5c79a1d927b9164f2c478e90992ad268bbb2465a736984391d6333d2c327913578b2804af33474ca554ba29c04a8b13060a717675ae3ac"
 }
