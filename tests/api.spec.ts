@@ -11,11 +11,11 @@ const { sessionStorage, localStorage } = createStorage(dbFile);
 
 [
 	{
-		type: 'storages.sessionStorage',
+		type: 'sessionStorage',
 		storage: sessionStorage,
 	},
 	{
-		type: 'storages.localStorage',
+		type: 'localStorage',
 		storage: localStorage,
 	},
 ].forEach(({ type, storage }) => {

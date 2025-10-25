@@ -11,12 +11,12 @@ const { sessionStorage, localStorage, emitter } = createStorage(dbFile);
 
 [
 	{
-		type: 'storages.sessionStorage',
+		type: 'sessionStorage',
 		storage: sessionStorage,
 		emitter: emitter,
 	},
 	{
-		type: 'storages.localStorage',
+		type: 'localStorage',
 		storage: localStorage,
 		emitter: emitter,
 	},
