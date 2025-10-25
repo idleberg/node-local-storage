@@ -24,9 +24,9 @@
 
 ### API
 
-#### `createStorages`
+#### `createStorage`
 
-Usage: `createStorages(dbFile: string)`  
+Usage: `createStorage(dbFile: string)`  
 Returns: `{ sessionStorage, localStorage, emitter }`
 
 Creates instances of both, [`sessionStorage`][] and [`localStorage`][], as well as a corresponding EventEmitter.
@@ -34,9 +34,9 @@ Creates instances of both, [`sessionStorage`][] and [`localStorage`][], as well 
 **Example:**
 
 ```typescript
-import { createStorages } from "@idleberg/local-storage";
+import { createStorage } from "@idleberg/local-storage";
 
-const { sessionStorage, localStorage, emitter } = createStorages("./db.sqlite");
+const { sessionStorage, localStorage, emitter } = createStorage("./db.sqlite");
 
 // Listen for storage changes
 emitter.on("storage", console.log);

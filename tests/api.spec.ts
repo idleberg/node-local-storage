@@ -4,10 +4,10 @@ import { randomUUID } from 'node:crypto';
 import { tmpdir } from 'node:os';
 import { resolve } from 'node:path';
 import { beforeEach, test } from 'node:test';
-import { createStorages, Storage } from '../src/index.ts';
+import { createStorage, Storage } from '../src/index.ts';
 
 const dbFile = resolve(tmpdir(), `${randomUUID()}.sqlite`);
-const { sessionStorage, localStorage } = createStorages(dbFile);
+const { sessionStorage, localStorage } = createStorage(dbFile);
 
 [
 	{

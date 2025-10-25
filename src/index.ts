@@ -210,7 +210,7 @@ export class Storage {
  * @param fileName path to the SQLite database file
  * @returns an object containing both storage interfaces and event emitter
  */
-export function createStorages(
+export function createStorage(
 	fileName: string,
 	options?: { quota?: number },
 ): {
