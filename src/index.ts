@@ -210,7 +210,10 @@ export class Storage {
  * @param fileName path to the SQLite database file
  * @returns an object containing both storage interfaces and event emitter
  */
-export function createStorages(fileName: string): {
+export function createStorages(
+	fileName: string,
+	options?: { quota?: number },
+): {
 	sessionStorage: Storage;
 	localStorage: Storage;
 	emitter: EventEmitter;
@@ -219,10 +222,12 @@ export function createStorages(fileName: string): {
 
 	const sessionStorage = new Storage(':memory:', {
 		emitter,
+		quota: options?.quota,
 	});
 
 	const localStorage = new Storage(fileName, {
 		emitter,
+		quota: options?.quota,
 	});
 
 	return { sessionStorage, localStorage, emitter };
