@@ -12,6 +12,7 @@
 -   fully API compatible to both, `localStorage` and `sessionStorage`
 -   persists data across sessions
 -   supports `storage` events
+-   supports optional quota
 
 > [!NOTE]
 > This module depends on the experimental `node:sqlite` module included in NodeJS v22.5 and later.
