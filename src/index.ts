@@ -76,7 +76,7 @@ export class Storage {
 			const item = this.#db.prepare('SELECT value FROM kv WHERE key = ?').get(keyName) as KeyValuePair;
 
 			return item.value;
-		} catch (_error) {
+		} catch {
 			return null;
 		}
 	}
