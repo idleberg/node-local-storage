@@ -4,7 +4,7 @@
 
 [![License](https://img.shields.io/github/license/idleberg/node-local-storage?color=blue&style=for-the-badge)](https://github.com/idleberg/node-local-storage/blob/main/LICENSE)
 [![Version](https://img.shields.io/npm/v/@idleberg/local-storage?style=for-the-badge)](https://www.npmjs.org/package/@idleberg/local-storage)
-[![Build](https://img.shields.io/github/actions/workflow/status/idleberg/node-local-storage/test.yml?style=for-the-badge)](https://github.com/idleberg/node-local-storage/actions)
+![GitHub branch check runs](https://img.shields.io/github/check-runs/idleberg/node-local-storage/main?style=for-the-badge)
 
 ## Features
 
