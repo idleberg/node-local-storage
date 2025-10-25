@@ -173,35 +173,6 @@ export class Storage {
 }
 
 /**
- * Creates an instance of `localStorage` that uses a SQLite database file to store data, and a corresponding EventEmitter.
- * @param fileName path to the SQLite database file
- * @returns a tuple of storage interface and event emitter
- */
-export function createLocalStorage(fileName: string): [Storage, EventEmitter] {
-	const emitter = new EventEmitter();
-
-	const api = new Storage(fileName, {
-		emitter,
-	});
-
-	return [api, emitter];
-}
-
-/**
- * Creates an instance of `sessionStorage` that uses memory to store data, and a corresponding EventEmitter.
- * @returns a tuple of storage interface and event emitter
- */
-export function createSessionStorage(): [Storage, EventEmitter] {
-	const emitter = new EventEmitter();
-
-	const api = new Storage(':memory:', {
-		emitter,
-	});
-
-	return [api, emitter];
-}
-
-/**
  * Returns instances of both, `sessionStorage` and `localStorage`, and a corresponding EventEmitter.
  * @param fileName path to the SQLite database file
  * @returns an object containing both storage interfaces and event emitter

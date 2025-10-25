@@ -24,42 +24,6 @@
 
 ### API
 
-#### `createLocalStorage`
-
-Usage: `createLocalStorage(dbFile: string)`  
-Returns: `[Storage, EventEmitter]`
-
-Creates an instance of the [`localStorage`][] API, and a corresponding EventEmitter.
-
-**Example:**
-
-```typescript
-import { createLocalStorage } from "@idleberg/local-storage";
-
-const [localStorage, emitter] = createLocalStorage("./db.sqlite");
-
-// Listen for storage changes
-emitter.on("storage", console.log);
-```
-
-#### `createSessionStorage`
-
-Usage: `createSessionStorage()`  
-Returns: `[Storage, EventEmitter]`
-
-Creates an instance of the [`sessionStorage`][] API, and a corresponding EventEmitter.
-
-**Example:**
-
-```typescript
-import { createSessionStorage } from "@idleberg/local-storage";
-
-const [sessionStorage, emitter] = createSessionStorage();
-
-// Listen for storage changes
-emitter.on("storage", console.log);
-```
-
 #### `createStorages`
 
 Usage: `createStorages(dbFile: string)`  
