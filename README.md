@@ -43,6 +43,10 @@ const { sessionStorage, localStorage, emitter } = createStorage("./db.sqlite");
 emitter.on("storage", console.log);
 ```
 
+##### Options
+
+###### `options.quota`
+
 #### `Storage` (Advanced Usage)
 
 Usage: `new Storage(filePath: string | ':memory:', options: StorageClassOptions)`
@@ -64,6 +68,20 @@ const localStorage = new Storage("./db.sqlite", {
 // Listen for storage changes
 myEmitter.on("storage", console.log);
 ```
+
+##### Options
+
+###### `options.emitter`
+
+An instance of `EventEmitter` to use for dispatching storage events.
+
+###### `options.eventName`
+
+The name of the event to dispatch when a storage event occurs. Defaults to `storage`.
+
+###### `options.quota`
+
+Optional storage quota in bytes, useful for emulating browser behaviour.
 
 ## Related
 
