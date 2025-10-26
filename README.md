@@ -4,7 +4,7 @@
 
 [![License](https://img.shields.io/github/license/idleberg/node-local-storage?color=blue&style=for-the-badge)](https://github.com/idleberg/node-local-storage/blob/main/LICENSE)
 [![Version](https://img.shields.io/npm/v/@idleberg/local-storage?style=for-the-badge)](https://www.npmjs.org/package/@idleberg/local-storage)
-[![Build](https://img.shields.io/github/actions/workflow/status/idleberg/node-local-storage/test.yml?style=for-the-badge)](https://github.com/idleberg/node-local-storage/actions)
+![GitHub branch check runs](https://img.shields.io/github/check-runs/idleberg/node-local-storage/main?style=for-the-badge)
 
 ## Features
 
@@ -12,6 +12,7 @@
 -   fully API compatible to both, `localStorage` and `sessionStorage`
 -   persists data across sessions
 -   supports `storage` events
+-   supports optional quota
 
 > [!NOTE]
 > This module depends on the experimental `node:sqlite` module included in NodeJS v22.5 and later.
@@ -24,45 +25,9 @@
 
 ### API
 
-#### `createLocalStorage`
+#### `createStorage`
 
-Usage: `createLocalStorage(dbFile: string)`  
-Returns: `[Storage, EventEmitter]`
-
-Creates an instance of the [`localStorage`][] API, and a corresponding EventEmitter.
-
-**Example:**
-
-```typescript
-import { createLocalStorage } from "@idleberg/local-storage";
-
-const [localStorage, emitter] = createLocalStorage("./db.sqlite");
-
-// Listen for storage changes
-emitter.on("storage", console.log);
-```
-
-#### `createSessionStorage`
-
-Usage: `createSessionStorage()`  
-Returns: `[Storage, EventEmitter]`
-
-Creates an instance of the [`sessionStorage`][] API, and a corresponding EventEmitter.
-
-**Example:**
-
-```typescript
-import { createSessionStorage } from "@idleberg/local-storage";
-
-const [sessionStorage, emitter] = createSessionStorage();
-
-// Listen for storage changes
-emitter.on("storage", console.log);
-```
-
-#### `createStorages`
-
-Usage: `createStorages(dbFile: string)`  
+Usage: `createStorage(dbFile: string, options?: StorageFactoryOptions)`  
 Returns: `{ sessionStorage, localStorage, emitter }`
 
 Creates instances of both, [`sessionStorage`][] and [`localStorage`][], as well as a corresponding EventEmitter.
@@ -70,17 +35,21 @@ Creates instances of both, [`sessionStorage`][] and [`localStorage`][], as well 
 **Example:**
 
 ```typescript
-import { createStorages } from "@idleberg/local-storage";
+import { createStorage } from "@idleberg/local-storage";
 
-const { sessionStorage, localStorage, emitter } = createStorages("./db.sqlite");
+const { sessionStorage, localStorage, emitter } = createStorage("./db.sqlite");
 
 // Listen for storage changes
 emitter.on("storage", console.log);
 ```
 
+##### Options
+
+###### `options.quota`
+
 #### `Storage` (Advanced Usage)
 
-Usage: `new Storage(filePath: string | ':memory:', options: StorageEventOptions)`
+Usage: `new Storage(filePath: string | ':memory:', options: StorageClassOptions)`
 
 This class is used internally by the above factory functions. It allows you more control over the EventEmitter, e.g. you could re-use an existing one from your application code.
 
@@ -99,6 +68,20 @@ const localStorage = new Storage("./db.sqlite", {
 // Listen for storage changes
 myEmitter.on("storage", console.log);
 ```
+
+##### Options
+
+###### `options.emitter`
+
+An instance of `EventEmitter` to use for dispatching storage events.
+
+###### `options.eventName`
+
+The name of the event to dispatch when a storage event occurs. Defaults to `storage`.
+
+###### `options.quota`
+
+Optional storage quota in bytes, useful for emulating browser behaviour.
 
 ## Related
 

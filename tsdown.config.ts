@@ -5,7 +5,6 @@ export default defineConfig((options) => {
 
 	return {
 		target: 'node22',
-		clean: isProduction,
 		dts: isProduction,
 		entry: ['src/index.ts'],
 		format: ['cjs', 'esm'],

@@ -6,32 +6,39 @@ type KeyValuePair = {
 	value: string;
 };
 
-type EventOptions = {
+interface StorageFactoryOptions {
+	quota?: number;
+}
+
+interface StorageClassOptions extends StorageFactoryOptions {
 	emitter: EventEmitter;
 	eventName?: string;
-};
+}
 
 export class Storage {
 	#db: Database;
 	#emitter: EventEmitter;
 	#eventName = 'storage';
+	#quota?: number;
 
 	/**
 	 * Creates a new instance of `Storage`, a ponyfill for both, the `localStorage` and `sessionStorage`, APIs.
 	 * @param fileName path to the SQLite database file, or `:memory:` to act like `sessionStorage`.
-	 * @param options An object containing options for the event emitter.
+	 * @param options An object containing options for the Storage instance.
 	 * @param options.emitter An instance of `EventEmitter` to use for dispatching storage events.
 	 * @param options.eventName The name of the event to dispatch when a storage event occurs. Defaults to `storage`.
+	 * @param options.quota Storage quota in bytes. When set, enforces browser-like storage limits (e.g., 5MB).
 	 * @throws {TypeError} If the `emitter` option is provided and is not an instance of `EventEmitter`.
 	 * @returns A new instance of `Storage`.
 	 */
-	constructor(fileName: string | ':memory:', options: EventOptions) {
+	constructor(fileName: string | ':memory:', options: StorageClassOptions) {
 		if (!(options.emitter instanceof EventEmitter)) {
 			throw new TypeError('The emitter option must be an instance of EventEmitter.');
 		}
 
 		this.#emitter = options.emitter;
 		this.#eventName = options?.eventName || 'storage';
+		this.#quota = options?.quota;
 
 		this.#db = new Database(fileName, {
 			open: true,
@@ -136,6 +143,7 @@ export class Storage {
 	 * The setItem() method of the Storage interface, when passed a key name and value, will add that key to the given Storage object, or update that key's value if it already exists.
 	 * @param keyName A string containing the name of the key you want to create/update.
 	 * @param keyValue A string containing the value you want to give the key you are creating/updating.
+	 * @throws {DOMException} QuotaExceededError if the operation would exceed the storage quota.
 	 */
 	setItem(...args: [keyName: string, keyValue: unknown]): void {
 		if (args.length !== 2) {
@@ -147,9 +155,37 @@ export class Storage {
 		const [keyName, keyValue] = args;
 		const oldValue = this.getItem(keyName);
 
+		// Check quota if set
+		if (this.#quota !== undefined) {
+			const currentSize = this.#calculateSize();
+			const oldSize = oldValue ? (String(keyName).length + oldValue.length) * 2 : 0;
+			const newSize = (String(keyName).length + String(keyValue).length) * 2;
+			const totalSize = currentSize - oldSize + newSize;
+
+			if (totalSize > this.#quota) {
+				const error = new Error(
+					`Failed to execute 'setItem' on 'Storage': Setting the value of '${keyName}' exceeded the quota.`,
+				);
+				error.name = 'QuotaExceededError';
+
+				throw error;
+			}
+		}
+
 		this.#db.prepare('REPLACE INTO kv (key, value) VALUES (?, ?)').run(String(keyName), String(keyValue));
 
 		this.#dispatchEvent(keyName, keyValue, oldValue);
+	}
+
+	/**
+	 * Calculates the current storage size in bytes.
+	 * Both keys and values are counted using UTF-16 encoding (2 bytes per character).
+	 * @private
+	 * @returns The total size in bytes.
+	 */
+	#calculateSize(): number {
+		const items = this.#db.prepare('SELECT key, value FROM kv').all() as KeyValuePair[];
+		return items.reduce((total, { key, value }) => total + (key.length + value.length) * 2, 0);
 	}
 
 	/**
@@ -173,40 +209,16 @@ export class Storage {
 }
 
 /**
- * Creates an instance of `localStorage` that uses a SQLite database file to store data, and a corresponding EventEmitter.
- * @param fileName path to the SQLite database file
- * @returns a tuple of storage interface and event emitter
- */
-export function createLocalStorage(fileName: string): [Storage, EventEmitter] {
-	const emitter = new EventEmitter();
-
-	const api = new Storage(fileName, {
-		emitter,
-	});
-
-	return [api, emitter];
-}
-
-/**
- * Creates an instance of `sessionStorage` that uses memory to store data, and a corresponding EventEmitter.
- * @returns a tuple of storage interface and event emitter
- */
-export function createSessionStorage(): [Storage, EventEmitter] {
-	const emitter = new EventEmitter();
-
-	const api = new Storage(':memory:', {
-		emitter,
-	});
-
-	return [api, emitter];
-}
-
-/**
  * Returns instances of both, `sessionStorage` and `localStorage`, and a corresponding EventEmitter.
- * @param fileName path to the SQLite database file
+ * @param fileName path to the SQLite database file@param options An object containing options for the event emitter.
+ * @param options Optional configuration object
+ * @param options.quota Optional storage quota in bytes (e.g., 5 * 1024 * 1024 for 5MB)
  * @returns an object containing both storage interfaces and event emitter
  */
-export function createStorages(fileName: string): {
+export function createStorage(
+	fileName: string,
+	options?: StorageFactoryOptions,
+): {
 	sessionStorage: Storage;
 	localStorage: Storage;
 	emitter: EventEmitter;
@@ -215,10 +227,12 @@ export function createStorages(fileName: string): {
 
 	const sessionStorage = new Storage(':memory:', {
 		emitter,
+		quota: options?.quota,
 	});
 
 	const localStorage = new Storage(fileName, {
 		emitter,
+		quota: options?.quota,
 	});
 
 	return { sessionStorage, localStorage, emitter };

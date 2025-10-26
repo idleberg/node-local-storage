@@ -1,30 +1,23 @@
 import assert from 'node:assert';
+
 // Helpers
 import { randomUUID } from 'node:crypto';
 import { tmpdir } from 'node:os';
 import { resolve } from 'node:path';
 import { beforeEach, test } from 'node:test';
-import { createLocalStorage, createSessionStorage, createStorages, Storage } from '../src/index.ts';
+import { createStorage, Storage } from '../src/index.ts';
 
 const dbFile = resolve(tmpdir(), `${randomUUID()}.sqlite`);
-const storages = createStorages(dbFile);
+const { sessionStorage, localStorage } = createStorage(dbFile);
 
 [
 	{
-		type: 'localStorage',
-		storage: createLocalStorage(dbFile)[0],
-	},
-	{
 		type: 'sessionStorage',
-		storage: createSessionStorage()[0],
+		storage: sessionStorage,
 	},
 	{
-		type: 'storages.localStorage',
-		storage: storages.localStorage,
-	},
-	{
-		type: 'storages.sessionStorage',
-		storage: storages.sessionStorage,
+		type: 'localStorage',
+		storage: localStorage,
 	},
 ].forEach(({ type, storage }) => {
 	beforeEach(() => {
