@@ -6,11 +6,14 @@ type KeyValuePair = {
 	value: string;
 };
 
-type EventOptions = {
+interface StorageFactoryOptions {
+	quota?: number;
+}
+
+interface StorageClassOptions extends StorageFactoryOptions {
 	emitter: EventEmitter;
 	eventName?: string;
-	quota?: number;
-};
+}
 
 export class Storage {
 	#db: Database;
@@ -21,14 +24,14 @@ export class Storage {
 	/**
 	 * Creates a new instance of `Storage`, a ponyfill for both, the `localStorage` and `sessionStorage`, APIs.
 	 * @param fileName path to the SQLite database file, or `:memory:` to act like `sessionStorage`.
-	 * @param options An object containing options for the event emitter.
+	 * @param options An object containing options for the Storage instance.
 	 * @param options.emitter An instance of `EventEmitter` to use for dispatching storage events.
 	 * @param options.eventName The name of the event to dispatch when a storage event occurs. Defaults to `storage`.
 	 * @param options.quota Storage quota in bytes. When set, enforces browser-like storage limits (e.g., 5MB).
 	 * @throws {TypeError} If the `emitter` option is provided and is not an instance of `EventEmitter`.
 	 * @returns A new instance of `Storage`.
 	 */
-	constructor(fileName: string | ':memory:', options: EventOptions) {
+	constructor(fileName: string | ':memory:', options: StorageClassOptions) {
 		if (!(options.emitter instanceof EventEmitter)) {
 			throw new TypeError('The emitter option must be an instance of EventEmitter.');
 		}
@@ -207,12 +210,14 @@ export class Storage {
 
 /**
  * Returns instances of both, `sessionStorage` and `localStorage`, and a corresponding EventEmitter.
- * @param fileName path to the SQLite database file
+ * @param fileName path to the SQLite database file@param options An object containing options for the event emitter.
+ * @param options Optional configuration object
+ * @param options.quota Optional storage quota in bytes (e.g., 5 * 1024 * 1024 for 5MB)
  * @returns an object containing both storage interfaces and event emitter
  */
 export function createStorage(
 	fileName: string,
-	options?: { quota?: number },
+	options?: StorageFactoryOptions,
 ): {
 	sessionStorage: Storage;
 	localStorage: Storage;

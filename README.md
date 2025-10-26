@@ -27,7 +27,7 @@
 
 #### `createStorage`
 
-Usage: `createStorage(dbFile: string, options?: StorageOptions)`  
+Usage: `createStorage(dbFile: string, options?: StorageFactoryOptions)`  
 Returns: `{ sessionStorage, localStorage, emitter }`
 
 Creates instances of both, [`sessionStorage`][] and [`localStorage`][], as well as a corresponding EventEmitter.
@@ -45,7 +45,7 @@ emitter.on("storage", console.log);
 
 #### `Storage` (Advanced Usage)
 
-Usage: `new Storage(filePath: string | ':memory:', options: StorageOptions)`
+Usage: `new Storage(filePath: string | ':memory:', options: StorageClassOptions)`
 
 This class is used internally by the above factory functions. It allows you more control over the EventEmitter, e.g. you could re-use an existing one from your application code.
 
