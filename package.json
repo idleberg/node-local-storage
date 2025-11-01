@@ -1,6 +1,6 @@
 {
 	"name": "@idleberg/local-storage",
-	"version": "0.2.2",
+	"version": "1.0.1",
 	"description": "A NodeJS ponyfill for the Storage API, utilizing SQLite",
 	"author": "Jan T. Sott",
 	"license": "MIT",
@@ -52,13 +52,13 @@
 		"@commitlint/cli": "^20.1.0",
 		"@commitlint/config-conventional": "^20.0.0",
 		"@idleberg/configs": "^0.3.1",
-		"@types/node": "~24.9.1",
+		"@types/node": "~24.9.2",
 		"concurrently": "^9.2.1",
 		"klip": "^0.2.0",
-		"knip": "^5.66.3",
+		"knip": "^5.66.4",
 		"np": "^10.2.0",
 		"publint": "^0.3.15",
-		"tsdown": "^0.15.10"
+		"tsdown": "^0.15.12"
 	},
 	"packageManager": "pnpm@10.17.0+sha512.fce8a3dd29a4ed2ec566fb53efbb04d8c44a0f05bc6f24a73046910fb9c3ce7afa35a0980500668fa3573345bd644644fa98338fa168235c80f4aa17aa17fbef"
 }
