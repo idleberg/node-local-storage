@@ -26,9 +26,6 @@ importers:
       concurrently:
         specifier: ^9.2.1
         version: 9.2.1
-      klip:
-        specifier: ^0.2.0
-        version: 0.2.0
       np:
         specifier: ^10.2.0
         version: 10.2.0(@types/node@24.10.1)(typescript@5.7.3)
@@ -2130,10 +2127,6 @@ packages:
     resolution: {integrity: sha512-dcS1ul+9tmeD95T+x28/ehLgd9mENa3LsvDTtzm3vyBEO7RPptvAD+t44WVXaUjTBRcrpFeFlC8WCruUR456hw==}
     engines: {node: '>=0.10.0'}
 
-  klip@0.2.0:
-    resolution: {integrity: sha512-FBwIdGcQnnOFMWgH30ewUNopzNqQmFot38FxbwH7XPxIWf8VATkzGXL6MvLSVi/RHU4iGxQWEs4mz1r9HHfDwg==}
-    hasBin: true
-
   ky@1.8.1:
     resolution: {integrity: sha512-7Bp3TpsE+L+TARSnnDpk3xg8Idi8RwSLdj6CMbNWoOARIrGrbuLGusV0dYwbZOm4bB3jHNxSw8Wk/ByDqJEnDw==}
     engines: {node: '>=18'}
@@ -3083,9 +3076,6 @@ packages:
 
   unconfig-core@7.4.1:
     resolution: {integrity: sha512-Bp/bPZjV2Vl/fofoA2OYLSnw1Z0MOhCX7zHnVCYrazpfZvseBbGhwcNQMxsg185Mqh7VZQqK3C8hFG/Dyng+yA==}
-
-  underscore@1.6.0:
-    resolution: {integrity: sha512-z4o1fvKUojIWh9XuaVLUDdf86RQiq13AC1dmHbTpoyuu+bquHms76v16CjycCbec87J7z0k//SiQVk0sMdFmpQ==}
 
   undici-types@6.20.0:
     resolution: {integrity: sha512-Ny6QZ2Nju20vw1SRHe3d9jVu6gJ+4e3+MMpqu7pqE5HT6WsTSlce++GQmK5UXS8mzV8DSYHrQH+Xrf2jVcuKNg==}
@@ -5159,10 +5149,6 @@ snapshots:
 
   kind-of@6.0.3: {}
 
-  klip@0.2.0:
-    dependencies:
-      underscore: 1.6.0
-
   ky@1.8.1: {}
 
   latest-version@9.0.0:
@@ -6105,8 +6091,6 @@ snapshots:
     dependencies:
       '@quansync/fs': 0.1.5
       quansync: 0.2.11
-
-  underscore@1.6.0: {}
 
   undici-types@6.20.0: {}
 

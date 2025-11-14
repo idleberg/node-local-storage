@@ -54,7 +54,6 @@
 		"@idleberg/configs": "^0.3.3",
 		"@types/node": "~24.10.1",
 		"concurrently": "^9.2.1",
-		"klip": "^0.2.0",
 		"np": "^10.2.0",
 		"tsdown": "^0.16.4"
 	},
