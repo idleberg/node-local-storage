@@ -231,7 +231,7 @@ export class Storage {
  * @returns an object containing both storage interfaces and event emitter
  */
 export function createStorage(
-	fileName: string,
+	fileName = ':memory:',
 	options?: StorageFactoryOptions,
 ): {
 	sessionStorage: Storage;
