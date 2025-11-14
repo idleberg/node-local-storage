@@ -19,6 +19,7 @@
         packages = with pkgs; [
           # Development Tools
           corepack
+          bun
           docker
           git
           git-lfs
@@ -46,16 +47,20 @@
           openvpn
           tealdeer
           wget
-          zq
+          zed
 
           # Shell Dependencies
-          alejandra
           direnv
           gum
           macchina
           which
+
+          # Other
+          alejandra
+          nixfmt
         ];
         shellHook = ''
+          clear
           macchina
 
           echo "Setting up environment variables..."
