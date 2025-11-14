@@ -27,7 +27,7 @@
 
 #### `createStorage`
 
-Usage: `createStorage(dbFile: string, options?: StorageFactoryOptions)`  
+Usage: `createStorage(dbFile?: string, options?: StorageFactoryOptions)`  
 Returns: `{ sessionStorage, localStorage, emitter }`
 
 Creates instances of both, [`sessionStorage`][] and [`localStorage`][], as well as a corresponding EventEmitter.
