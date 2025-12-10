@@ -47,6 +47,10 @@ export class Storage {
 	 * @throws {TypeError} If the `emitter` option is not an instance of `EventEmitter`.
 	 */
 	constructor(fileName: string | ':memory:', options: StorageClassOptions) {
+		if (typeof fileName !== 'string' || fileName.length === 0) {
+			throw new TypeError('The provided database file name is empty.');
+		}
+
 		if (!(options.emitter instanceof EventEmitter)) {
 			throw new TypeError('The emitter option must be an instance of EventEmitter.');
 		}
@@ -245,7 +249,7 @@ export function createStorage(
 		quota: options?.quota,
 	});
 
-	const localStorage = new Storage(fileName, {
+	const localStorage = new Storage(fileName || ':memory:', {
 		emitter,
 		quota: options?.quota,
 	});
