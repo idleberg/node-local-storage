@@ -199,7 +199,15 @@ const { sessionStorage, localStorage } = createStorage(dbFile);
 		});
 	});
 
-	test(`${type}.constructor - Throws Error`, () => {
+	test(`${type}.constructor - Throws on empty db file name`, () => {
+		// @ts-expect-error Ommiting argument for the test
+		assert.throws(() => new Storage(''), {
+			name: 'TypeError',
+			message: 'The provided database file name is empty.',
+		});
+	});
+
+	test(`${type}.constructor - Throws on missing emitter option`, () => {
 		const fileName = type === 'localStorage' ? dbFile : ':memory:';
 
 		// @ts-expect-error Ommiting argument for the test
