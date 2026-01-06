@@ -15,6 +15,7 @@
 -   supports optional quota
 
 > [!NOTE]
+> 
 > This package depends on the experimental `node:sqlite` module included in NodeJS v22.5 and later.
 
 ## Installation
