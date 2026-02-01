@@ -58,7 +58,7 @@ This class is used internally by `createStorage. It allows you more control over
 
 ```typescript
 import { Storage } from "@idleberg/local-storage";
-import EventEmitter from "events";
+import EventEmitter from "node:events";
 
 const myEmitter = new EventEmitter();
 
