@@ -15,7 +15,8 @@
 -   supports optional quota
 
 > [!NOTE]
-> This module depends on the experimental `node:sqlite` module included in NodeJS v22.5 and later.
+> 
+> This package depends on the experimental `node:sqlite` module included in NodeJS v22.5 and later.
 
 ## Installation
 
@@ -51,13 +52,13 @@ emitter.on("storage", console.log);
 
 Usage: `new Storage(filePath: string | ':memory:', options: StorageClassOptions)`
 
-This class is used internally by the above factory functions. It allows you more control over the EventEmitter, e.g. you could re-use an existing one from your application code.
+This class is used internally by `createStorage. It allows you more control over the EventEmitter, e.g. you could re-use an existing one from your application code.
 
 **Example:**
 
 ```typescript
 import { Storage } from "@idleberg/local-storage";
-import EventEmitter from "events";
+import EventEmitter from "node:events";
 
 const myEmitter = new EventEmitter();
 
